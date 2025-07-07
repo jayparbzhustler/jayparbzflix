@@ -199,6 +199,7 @@ const PlayerPage: React.FC = () => {
         ref={videoRef}
         className="absolute inset-0 w-full h-full object-contain bg-black"
         src={content.videoUrl}
+        poster={content.poster}
         preload="metadata"
         playsInline
         muted={isMuted}
