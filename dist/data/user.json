@@ -1,0 +1,53 @@
+{
+  "user": {
+    "id": 1,
+    "name": "Jay Parbz",
+    "email": "jay@jayparbzflix.com",
+    "avatar": "/images/avatar.jpg",
+    "preferences": {
+      "genres": ["action", "sci-fi", "drama"],
+      "maturity_rating": "R"
+    },
+    "my_list": [1, 3, 6, 7, 9, 11, 15, 18],
+    "continue_watching": [
+      {
+        "id": 1,
+        "type": "tvshow",
+        "progress": 65,
+        "season": 4,
+        "episode": 3,
+        "last_watched": "2025-06-19"
+      },
+      {
+        "id": 3,
+        "type": "movie",
+        "progress": 45,
+        "last_watched": "2025-06-18"
+      },
+      {
+        "id": 6,
+        "type": "tvshow",
+        "progress": 23,
+        "season": 1,
+        "episode": 5,
+        "last_watched": "2025-06-17"
+      },
+      {
+        "id": 9,
+        "type": "movie",
+        "progress": 78,
+        "last_watched": "2025-06-16"
+      },
+      {
+        "id": 11,
+        "type": "tvshow",
+        "progress": 89,
+        "season": 1,
+        "episode": 7,
+        "last_watched": "2025-06-15"
+      }
+    ],
+    "recently_watched": [1, 3, 6, 9, 11, 2, 4, 7, 10, 12],
+    "recommendations": [2, 4, 5, 8, 10, 12, 13, 14, 16, 17]
+  }
+}

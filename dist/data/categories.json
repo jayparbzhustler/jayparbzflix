@@ -1,0 +1,64 @@
+{
+  "categories": [
+    {
+      "id": "trending",
+      "name": "Trending Now",
+      "description": "What's hot right now"
+    },
+    {
+      "id": "action",
+      "name": "Action & Adventure",
+      "description": "High-octane thrillers and adventures"
+    },
+    {
+      "id": "comedy",
+      "name": "Comedy",
+      "description": "Laugh-out-loud entertainment"
+    },
+    {
+      "id": "drama",
+      "name": "Drama",
+      "description": "Compelling stories and characters"
+    },
+    {
+      "id": "sci-fi",
+      "name": "Sci-Fi & Fantasy",
+      "description": "Futuristic and fantastical worlds"
+    },
+    {
+      "id": "crime",
+      "name": "Crime & Thriller",
+      "description": "Edge-of-your-seat suspense"
+    },
+    {
+      "id": "romance",
+      "name": "Romance",
+      "description": "Love stories and romantic comedies"
+    },
+    {
+      "id": "horror",
+      "name": "Horror",
+      "description": "Spine-chilling scares"
+    },
+    {
+      "id": "documentary",
+      "name": "Documentaries",
+      "description": "Real stories, real impact"
+    },
+    {
+      "id": "kids",
+      "name": "Kids & Family",
+      "description": "Fun for the whole family"
+    },
+    {
+      "id": "international",
+      "name": "International Movies",
+      "description": "Global cinema"
+    },
+    {
+      "id": "originals",
+      "name": "JayParbzFlix Originals",
+      "description": "Exclusive JayParbzFlix content"
+    }
+  ]
+}
