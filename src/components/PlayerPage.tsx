@@ -201,7 +201,7 @@ const PlayerPage: React.FC = () => {
       {isYouTube ? (
         <iframe
           src={content.videoUrl + (content.videoUrl.includes('?') ? '&' : '?') + 'autoplay=1'}
-          className="absolute inset-0 w-full h-full object-contain bg-black"
+          className="absolute inset-0 w-full h-full object-contain bg-black z-10"
           allow="autoplay; encrypted-media; picture-in-picture"
           allowFullScreen
           frameBorder="0"
@@ -242,173 +242,173 @@ const PlayerPage: React.FC = () => {
               <Play size={80} className="text-white" fill="white" />
             </div>
           </div>
-        </>
-      )}
 
-      {/* Loading/Buffering indicator */}
-      {isLoading && (
-        <div className="absolute inset-0 flex items-center justify-center bg-black/50">
-          <div className="text-center text-white">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-white mx-auto mb-4"></div>
-            <p className="text-lg">Loading video...</p>
-          </div>
-        </div>
-      )}
-
-      {/* Controls Overlay */}
-      <div className={`absolute inset-0 transition-opacity duration-300 ${
-        showControls ? 'opacity-100' : 'opacity-0'
-      }`}>
-        {/* Top Controls */}
-        <div className="absolute top-0 left-0 right-0 bg-gradient-to-b from-black/80 to-transparent p-6">
-          <div className="flex items-center justify-between">
-            <button
-              onClick={handleBack}
-              className="flex items-center space-x-2 text-white hover:text-gray-300 transition-colors duration-200"
-            >
-              <ArrowLeft size={24} />
-              <span className="text-lg">Back</span>
-            </button>
-            
-            <div className="text-white text-center">
-              <h1 className="text-2xl font-bold">{content.title}</h1>
-              <p className="text-gray-300">
-                {'duration' in content 
-                  ? `${content.year} • ${content.duration}` 
-                  : `${content.year} • Season 1, Episode 1`
-                }
-              </p>
+          {/* Loading/Buffering indicator */}
+          {isLoading && (
+            <div className="absolute inset-0 flex items-center justify-center bg-black/50">
+              <div className="text-center text-white">
+                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-white mx-auto mb-4"></div>
+                <p className="text-lg">Loading video...</p>
+              </div>
             </div>
-            
-            <button className="text-white hover:text-gray-300 transition-colors duration-200">
-              <Settings size={24} />
-            </button>
-          </div>
-        </div>
+          )}
 
-        {/* Bottom Controls */}
-        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6">
-          {/* Progress Bar */}
-          <div className="mb-4">
-            <input
-              type="range"
-              min="0"
-              max={duration}
-              value={currentTime}
-              onChange={handleSeek}
-              className="w-full h-2 bg-gray-600 rounded-lg appearance-none cursor-pointer slider"
-              style={{
-                background: `linear-gradient(to right, #ef4444 0%, #ef4444 ${progressPercentage}%, #4b5563 ${progressPercentage}%, #4b5563 100%)`
-              }}
-            />
-            <div className="flex justify-between text-white text-sm mt-2">
-              <span>{formatTime(currentTime)}</span>
-              <span>{formatTime(duration)}</span>
-            </div>
-          </div>
-
-          {/* Control Buttons */}
-          <div className="flex items-center justify-between">
-            {/* Left Controls */}
-            <div className="flex items-center space-x-4">
-              <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  handleSkip(-10);
-                }}
-                className="text-white hover:text-gray-300 transition-colors duration-200"
-              >
-                <Rewind size={32} />
-              </button>
-              
-              <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  handleSkip(-30);
-                }}
-                className="text-white hover:text-gray-300 transition-colors duration-200"
-              >
-                <SkipBack size={32} />
-              </button>
-              
-              <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  handlePlayPause();
-                }}
-                className="text-white hover:text-gray-300 transition-colors duration-200 bg-white/20 rounded-full p-3"
-              >
-                {isPlaying ? <Pause size={32} /> : <Play size={32} fill="white" />}
-              </button>
-              
-              <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  handleSkip(30);
-                }}
-                className="text-white hover:text-gray-300 transition-colors duration-200"
-              >
-                <SkipForward size={32} />
-              </button>
-              
-              <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  handleSkip(10);
-                }}
-                className="text-white hover:text-gray-300 transition-colors duration-200"
-              >
-                <FastForward size={32} />
-              </button>
-            </div>
-
-            {/* Right Controls */}
-            <div className="flex items-center space-x-4">
-              {/* Volume Control */}
-              <div className="flex items-center space-x-2">
+          {/* Controls Overlay */}
+          <div className={`absolute inset-0 transition-opacity duration-300 ${
+            showControls ? 'opacity-100' : 'opacity-0'
+          }`}>
+            {/* Top Controls */}
+            <div className="absolute top-0 left-0 right-0 bg-gradient-to-b from-black/80 to-transparent p-6">
+              <div className="flex items-center justify-between">
                 <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    handleMute();
-                  }}
-                  className="text-white hover:text-gray-300 transition-colors duration-200"
+                  onClick={handleBack}
+                  className="flex items-center space-x-2 text-white hover:text-gray-300 transition-colors duration-200"
                 >
-                  {isMuted || volume === 0 ? <VolumeX size={24} /> : <Volume2 size={24} />}
+                  <ArrowLeft size={24} />
+                  <span className="text-lg">Back</span>
                 </button>
+                
+                <div className="text-white text-center">
+                  <h1 className="text-2xl font-bold">{content.title}</h1>
+                  <p className="text-gray-300">
+                    {'duration' in content 
+                      ? `${content.year} • ${content.duration}` 
+                      : `${content.year} • Season 1, Episode 1`
+                    }
+                  </p>
+                </div>
+                
+                <button className="text-white hover:text-gray-300 transition-colors duration-200">
+                  <Settings size={24} />
+                </button>
+              </div>
+            </div>
+
+            {/* Bottom Controls */}
+            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6">
+              {/* Progress Bar */}
+              <div className="mb-4">
                 <input
                   type="range"
                   min="0"
-                  max="100"
-                  value={isMuted ? 0 : volume}
-                  onChange={handleVolumeChange}
-                  className="w-20 h-1 bg-gray-600 rounded-lg appearance-none cursor-pointer"
-                  onClick={(e) => e.stopPropagation()}
+                  max={duration}
+                  value={currentTime}
+                  onChange={handleSeek}
+                  className="w-full h-2 bg-gray-600 rounded-lg appearance-none cursor-pointer slider"
+                  style={{
+                    background: `linear-gradient(to right, #ef4444 0%, #ef4444 ${progressPercentage}%, #4b5563 ${progressPercentage}%, #4b5563 100%)`
+                  }}
                 />
+                <div className="flex justify-between text-white text-sm mt-2">
+                  <span>{formatTime(currentTime)}</span>
+                  <span>{formatTime(duration)}</span>
+                </div>
               </div>
-              
-              <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  // Fullscreen functionality would go here
-                }}
-                className="text-white hover:text-gray-300 transition-colors duration-200"
-              >
-                <Maximize size={24} />
-              </button>
+
+              {/* Control Buttons */}
+              <div className="flex items-center justify-between">
+                {/* Left Controls */}
+                <div className="flex items-center space-x-4">
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleSkip(-10);
+                    }}
+                    className="text-white hover:text-gray-300 transition-colors duration-200"
+                  >
+                    <Rewind size={32} />
+                  </button>
+                  
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleSkip(-30);
+                    }}
+                    className="text-white hover:text-gray-300 transition-colors duration-200"
+                  >
+                    <SkipBack size={32} />
+                  </button>
+                  
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handlePlayPause();
+                    }}
+                    className="text-white hover:text-gray-300 transition-colors duration-200 bg-white/20 rounded-full p-3"
+                  >
+                    {isPlaying ? <Pause size={32} /> : <Play size={32} fill="white" />}
+                  </button>
+                  
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleSkip(30);
+                    }}
+                    className="text-white hover:text-gray-300 transition-colors duration-200"
+                  >
+                    <SkipForward size={32} />
+                  </button>
+                  
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleSkip(10);
+                    }}
+                    className="text-white hover:text-gray-300 transition-colors duration-200"
+                  >
+                    <FastForward size={32} />
+                  </button>
+                </div>
+
+                {/* Right Controls */}
+                <div className="flex items-center space-x-4">
+                  {/* Volume Control */}
+                  <div className="flex items-center space-x-2">
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleMute();
+                      }}
+                      className="text-white hover:text-gray-300 transition-colors duration-200"
+                    >
+                      {isMuted || volume === 0 ? <VolumeX size={24} /> : <Volume2 size={24} />}
+                    </button>
+                    <input
+                      type="range"
+                      min="0"
+                      max="100"
+                      value={isMuted ? 0 : volume}
+                      onChange={handleVolumeChange}
+                      className="w-20 h-1 bg-gray-600 rounded-lg appearance-none cursor-pointer"
+                      onClick={(e) => e.stopPropagation()}
+                    />
+                  </div>
+                  
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      // Fullscreen functionality would go here
+                    }}
+                    className="text-white hover:text-gray-300 transition-colors duration-200"
+                  >
+                    <Maximize size={24} />
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
 
-      {/* Episode info for TV shows */}
-      {'seasons' in content && (
-        <div className={`absolute top-20 right-6 bg-black/80 rounded-lg p-4 max-w-xs transition-opacity duration-300 ${
-          showControls ? 'opacity-100' : 'opacity-0'
-        }`}>
-          <h3 className="text-white font-semibold mb-2">Episode Info</h3>
-          <p className="text-gray-300 text-sm mb-2">Season 1, Episode 1</p>
-          <p className="text-gray-400 text-xs">{content.description.substring(0, 100)}...</p>
-        </div>
+          {/* Episode info for TV shows */}
+          {'seasons' in content && (
+            <div className={`absolute top-20 right-6 bg-black/80 rounded-lg p-4 max-w-xs transition-opacity duration-300 ${
+              showControls ? 'opacity-100' : 'opacity-0'
+            }`}>
+              <h3 className="text-white font-semibold mb-2">Episode Info</h3>
+              <p className="text-gray-300 text-sm mb-2">Season 1, Episode 1</p>
+              <p className="text-gray-400 text-xs">{content.description.substring(0, 100)}...</p>
+            </div>
+          )}
+        </>
       )}
     </div>
   );
