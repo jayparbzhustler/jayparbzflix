@@ -188,6 +188,9 @@ const PlayerPage: React.FC = () => {
 
   const progressPercentage = (currentTime / duration) * 100;
 
+  // Detect if the videoUrl is a YouTube embed link
+  const isYouTube = content.videoUrl && content.videoUrl.includes('youtube.com/embed/');
+
   return (
     <div 
       className="relative min-h-screen bg-black overflow-hidden cursor-none"
@@ -195,31 +198,42 @@ const PlayerPage: React.FC = () => {
       onClick={handlePlayPause}
     >
       {/* Video Player */}
-      <video
-        ref={videoRef}
-        className="absolute inset-0 w-full h-full object-contain bg-black"
-        src={content.videoUrl}
-        poster={content.poster}
-        preload="metadata"
-        playsInline
-        muted={isMuted}
-        autoPlay={isPlaying}
-        onLoadedMetadata={(e) => {
-          if (videoRef.current) {
-            setDuration(videoRef.current.duration);
-            setIsLoading(false);
-          }
-        }}
-        onTimeUpdate={(e) => {
-          if (videoRef.current) {
-            setCurrentTime(videoRef.current.currentTime);
-          }
-        }}
-        onEnded={() => {
-          setIsPlaying(false);
-        }}
-      />
-      
+      {isYouTube ? (
+        <iframe
+          src={content.videoUrl + (content.videoUrl.includes('?') ? '&' : '?') + 'autoplay=1'}
+          className="absolute inset-0 w-full h-full object-contain bg-black"
+          allow="autoplay; encrypted-media; picture-in-picture"
+          allowFullScreen
+          frameBorder="0"
+          title={content.title}
+        />
+      ) : (
+        <video
+          ref={videoRef}
+          className="absolute inset-0 w-full h-full object-contain bg-black"
+          src={content.videoUrl}
+          poster={content.poster}
+          preload="metadata"
+          playsInline
+          muted={isMuted}
+          autoPlay={isPlaying}
+          onLoadedMetadata={(e) => {
+            if (videoRef.current) {
+              setDuration(videoRef.current.duration);
+              setIsLoading(false);
+            }
+          }}
+          onTimeUpdate={(e) => {
+            if (videoRef.current) {
+              setCurrentTime(videoRef.current.currentTime);
+            }
+          }}
+          onEnded={() => {
+            setIsPlaying(false);
+          }}
+        />
+      )}
+
       {/* Center Play/Pause Indicator */}
       <div className="absolute inset-0 flex items-center justify-center">
         <div className={`bg-black/50 rounded-full p-8 transition-opacity duration-300 ${
