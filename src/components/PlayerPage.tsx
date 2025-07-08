@@ -208,40 +208,42 @@ const PlayerPage: React.FC = () => {
           title={content.title}
         />
       ) : (
-        <video
-          ref={videoRef}
-          className="absolute inset-0 w-full h-full object-contain bg-black"
-          src={content.videoUrl}
-          poster={content.poster}
-          preload="metadata"
-          playsInline
-          muted={isMuted}
-          autoPlay={isPlaying}
-          onLoadedMetadata={(e) => {
-            if (videoRef.current) {
-              setDuration(videoRef.current.duration);
-              setIsLoading(false);
-            }
-          }}
-          onTimeUpdate={(e) => {
-            if (videoRef.current) {
-              setCurrentTime(videoRef.current.currentTime);
-            }
-          }}
-          onEnded={() => {
-            setIsPlaying(false);
-          }}
-        />
-      )}
+        <>
+          <video
+            ref={videoRef}
+            className="absolute inset-0 w-full h-full object-contain bg-black"
+            src={content.videoUrl}
+            poster={content.poster}
+            preload="metadata"
+            playsInline
+            muted={isMuted}
+            autoPlay={isPlaying}
+            onLoadedMetadata={(e) => {
+              if (videoRef.current) {
+                setDuration(videoRef.current.duration);
+                setIsLoading(false);
+              }
+            }}
+            onTimeUpdate={(e) => {
+              if (videoRef.current) {
+                setCurrentTime(videoRef.current.currentTime);
+              }
+            }}
+            onEnded={() => {
+              setIsPlaying(false);
+            }}
+          />
 
-      {/* Center Play/Pause Indicator */}
-      <div className="absolute inset-0 flex items-center justify-center">
-        <div className={`bg-black/50 rounded-full p-8 transition-opacity duration-300 ${
-          showControls && !isPlaying ? 'opacity-100' : 'opacity-0'
-        }`}>
-          <Play size={80} className="text-white" fill="white" />
-        </div>
-      </div>
+          {/* Center Play/Pause Indicator */}
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className={`bg-black/50 rounded-full p-8 transition-opacity duration-300 ${
+              showControls && !isPlaying ? 'opacity-100' : 'opacity-0'
+            }`}>
+              <Play size={80} className="text-white" fill="white" />
+            </div>
+          </div>
+        </>
+      )}
 
       {/* Loading/Buffering indicator */}
       {isLoading && (
